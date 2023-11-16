@@ -7,11 +7,13 @@ const BudgetCalculator = () => {
   const [expenses, setExpenses] = useState(
     JSON.parse(localStorage.getItem('expenses')) || []
   );
+
   //리프레시되어도 사라지지않게 로컬스토리지에서 꺼내오기
   useEffect(() => {
     localStorage.setItem('expenses', JSON.stringify(expenses));
   }, [expenses]);
 
+  //알림창 상태관리
   const [alert, setAlert] = useState({ show: false, type: '', message: '' });
 
   const showAlert = (show = false, type = '', message = '') => {
@@ -57,11 +59,12 @@ const BudgetCalculator = () => {
   const totalExpenses = expenses.reduce((acc, curr) => acc + curr.amount, 0);
 
   return (
-    <div className='max-w-4xl mx-auto p-5'>
+    <div className='max-w-4xl mx-auto p-5 bg-pink-100'>
       {alert.show && (
         <div className={`alert alert-${alert.type}`}>{alert.message}</div>
       )}
-      <h1 className='text-2xl font-bold text-center mb-6'>예산계산기</h1>
+      <h1 className='text-2xl font-bold text-left mb-6'>예산계산기</h1>
+
       <ExpenseForm addExpense={addExpense} />
       <ExpenseList
         expenses={expenses}

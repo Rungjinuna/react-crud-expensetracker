@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-const ExpenseForm = ({ addExpense, edit, setEdit }) => {
+const ExpenseForm = ({ addExpense }) => {
   const [expense, setExpense] = useState('');
   const [amount, setAmount] = useState('');
+  const [edit, setEdit] = useState(null);
 
   useEffect(() => {
     if (edit) {
@@ -33,14 +34,14 @@ const ExpenseForm = ({ addExpense, edit, setEdit }) => {
         value={expense}
         onChange={(e) => setExpense(e.target.value)}
         placeholder='지출 항목'
-        className='flex-1 mr-2 p-2 border-2 border-gray-200 rounded'
+        className='flex-1 mr-2 p-2 border-2 border-pink-200 rounded'
       />
       <input
         type='number'
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
         placeholder='비용 (원)'
-        className='w-1/4 p-2 border-2 border-gray-200 rounded'
+        className='w-1/4 p-2 border-2 border-pink-200 rounded'
       />
       <button
         type='submit'
